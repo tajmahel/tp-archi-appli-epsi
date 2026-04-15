@@ -2,17 +2,17 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 
 @dataclass(frozen=True)
-class Tarification:  # VALUE OBJECT 2
+class Tarification:
     prix_base: int = 10
     
     def calculer(self, est_heure_de_pointe: bool) -> int:
-        # Pattern Strategy : La logique de calcul est encapsulée ici
+        # Pattern Strategy
         if est_heure_de_pointe:
             return self.prix_base * 2
         return self.prix_base
 
 @dataclass(frozen=True)
-class CreneauHoraire:  # VALUE OBJECT 1
+class CreneauHoraire:
     debut: datetime
     fin: datetime
 
@@ -20,28 +20,27 @@ class CreneauHoraire:  # VALUE OBJECT 1
         return 14 <= self.debut.hour < 18
 
 @dataclass
-class Membre:  # ENTITÉ 1
+class Membre:
     id_membre: str
     nom: str
     credits: int
 
 @dataclass
-class Ressource:  # ENTITÉ 2
+class Ressource:
     id_ressource: str
     type: str  # 'SALLE', 'VIDEOPROJECTEUR'
     nom: str
 
-class Reservation:  # ENTITÉ 3
+class Reservation:
     def __init__(self, res_id, membre, ressource, creneau):
         self.id = res_id
         self.membre = membre
         self.ressource = ressource
         self.creneau = creneau
         self.statut = "VALIDEE"
-        self.tarificateur = Tarification() # Utilisation du VO Tarification
+        self.tarificateur = Tarification()
 
     def obtenir_prix_final(self) -> int:
-        # On délègue le calcul au Value Object Tarification
         return self.tarificateur.calculer(self.creneau.est_heure_de_pointe())
 
     def annuler(self) -> str:
