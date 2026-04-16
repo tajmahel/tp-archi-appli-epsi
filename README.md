@@ -87,6 +87,10 @@ Le projet est découpé en couches pour isoler la logique métier de l'infrastru
 
 ![Swagger Succès](captures/salleOK.png)
 
+### Blocage métier (Ressource inconnue)
+
+![Swagger Error](captures/ressourceInconnue.png)
+
 ### Blocage métier (Vidéoprojecteur seul)
 
 ![Swagger Error](captures/videoprojKO.png)
