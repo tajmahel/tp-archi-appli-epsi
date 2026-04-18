@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+
+# Tests
+pytest
+pytest-mock
+
+# Utilitaires
+python-multipart
